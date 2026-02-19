@@ -13,7 +13,7 @@ terraform {
     key = "backend.locking"
 
     # AWS region where the S3 bucket is located
-    region = "eu-west-1"
+    region = "us-east-1"
 
     # Enables S3-based state locking using a lock file (.tflock)
     # Prevents multiple users from running terraform apply at the same time
