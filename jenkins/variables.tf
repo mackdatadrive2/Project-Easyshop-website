@@ -4,14 +4,9 @@ variable "aws_region"  {
 }
 
 
-variable "ami_id" {
-    description = "ami id for the EC2 instances"
-    default     = "ami-085f9c64a9b75eed5" 
-}
-
 variable "instace_type" {
     description = "Instance type for the EC2 instances"
-    default     = "t3.medium"
+    default     = "t3.micro"
 }
 
 variable "my_environment" {

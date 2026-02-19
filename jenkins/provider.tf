@@ -6,7 +6,7 @@ locals {
   region = "eu-west-1"
 
   # Name used for tagging and identifying resources
-  name   = "dock-eks-cluster"
+  name   = "Jenkins"
 
   # CIDR block for the VPC
   vpc_cidr = "10.0.0.0/16"

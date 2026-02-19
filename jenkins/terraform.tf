@@ -5,7 +5,7 @@ terraform {
 
     # Name of the S3 bucket where the Terraform state file is stored
     # The bucket must already exist in AWS
-    bucket = "terraform-s3-backend-tws-hackathon"
+    bucket = "terraform-s3-backend-terraform"
 
     # Name (path) of the state file inside the S3 bucket
     # This will create an object like:
