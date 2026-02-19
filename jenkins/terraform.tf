@@ -1,6 +1,6 @@
 terraform {
 
-    # Configure S3 as the remote backend for Terraform state
+  # Configure S3 as the remote backend for Terraform state
   backend "s3" {
 
     # Name of the S3 bucket where the Terraform state file is stored
