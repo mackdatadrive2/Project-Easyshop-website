@@ -17,3 +17,11 @@ variable "my_enviroment" {
   description = "Instance type for the EC2 instance"
   default     = "dev"
 }
+
+
+variable "ec2_ssh_key_name" {
+  description = "Existing EC2 key pair name"
+  type        = string
+}
+
+
