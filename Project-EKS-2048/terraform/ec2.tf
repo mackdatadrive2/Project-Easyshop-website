@@ -14,7 +14,7 @@ data "aws_ami" "os_image" {
 
 
 data "aws_key_pair" "deployer" {
-  key_name = var.ec2_ssh_key_name
+     key_name = var.ec2_ssh_key_name
 }
 
 
