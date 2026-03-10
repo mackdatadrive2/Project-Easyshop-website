@@ -26,7 +26,5 @@ module "vpc" {                                  # Define a Terraform module name
 }
 
 
-
-
 ### This module creates a highly available AWS VPC with public and private subnets,
 ### NAT Gateway for outbound internet access, and Kubernetes-compatible subnet tagging.
