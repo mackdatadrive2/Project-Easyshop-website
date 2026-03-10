@@ -4,7 +4,7 @@ $DomainName  = "corp.local"
 $NetBIOSName = "CORP"
 
 # Local admin password for DSRM (Directory Services Restore Mode)
-$DSRMPasswordPlain = "P@ssw0rd-ChangeMe!"
+$DSRMPasswordPlain = "Bshelke77@"
 $DSRMPassword = ConvertTo-SecureString $DSRMPasswordPlain -AsPlainText -Force
 
 # ---------- Install AD DS + DNS ----------
