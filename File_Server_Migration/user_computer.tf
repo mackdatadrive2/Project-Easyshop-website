@@ -1,5 +1,5 @@
 # --- Find latest Windows Server 2019 Base AMI (public) ---
-data "aws_ami" "win2019" {
+data "aws_ami" "windowsworkstation" {
   most_recent = true
   owners      = ["801119661308"] # Amazon public AMI owner
 
@@ -17,8 +17,8 @@ data "aws_ami" "win2019" {
 
 
 # --- Security Group for File Server ---
-resource "aws_security_group" "fs_sg" {
-  name        = "win2019-fileserver-sg"
+resource "aws_security_group" "user-server_sg" {
+  name        = "win2019-user-server-sg"
   description = "RDP + SMB internal"
   vpc_id      = aws_vpc.migration.id
 
@@ -51,12 +51,12 @@ resource "aws_security_group" "fs_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags = merge(var.tags, { Name = "win2019-fileserver-sg" })
+  tags = merge(var.tags, { Name = "win2019-user-server-sg" })
 }
 
 
 # --- Windows 2019 File Server in PUBLIC subnet (demo parity) ---
-resource "aws_instance" "win2019_fileserver" {
+resource "aws_instance" "win2019_User-server" {
   ami                         = data.aws_ami.win2019.id
   instance_type               = var.fs_instance_type
   subnet_id                   = aws_subnet.public[0].id
@@ -77,23 +77,13 @@ resource "aws_instance" "win2019_fileserver" {
     encrypted             = true
   }
 
-  # ✅ Additional 50 GB disk intended for D: (File Share data)
-  ebs_block_device {
-    device_name           = "/dev/sdf"   # Common secondary disk mapping
-    volume_size           = 50
-    volume_type           = "gp3"
-    delete_on_termination = true
-    encrypted             = true
-  }
-
-
-  tags = merge(var.tags, { Name = "Win2019-FileServer" })
+  tags = merge(var.tags, { Name = "Win2019-user-Server" })
 }
 
-output "fileserver_public_ip" {
+output "user-server_public_ip" {
   value = aws_instance.win2019_fileserver.public_ip
 }
 
-output "fileserver_private_ip" {
+output "user-server_private_ip" {
   value = aws_instance.win2019_fileserver.private_ip
 }

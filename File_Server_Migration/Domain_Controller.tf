@@ -62,6 +62,13 @@ resource "aws_security_group" "dc_sg" {
     protocol    = "udp"
     cidr_blocks = [var.vpc_cidr]
   }
+  
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = [var.vpc_cidr]
+  }
 
   # LDAP / LDAPS
   ingress {
@@ -155,8 +162,16 @@ resource "aws_instance" "win2022_dc" {
   associate_public_ip_address = true
   
   iam_instance_profile = aws_iam_instance_profile.ec2_ssm_instance_profile.name
-  
+
   user_data = file("${path.module}/userdata_dc_win2022.ps1")
+  
+ root_block_device {
+    volume_size           = 50
+    volume_type           = "gp3"
+    delete_on_termination = true
+    encrypted             = true
+  }
+
 
   tags = merge(var.tags, { Name = "Win2022-DomainController" })
 }
